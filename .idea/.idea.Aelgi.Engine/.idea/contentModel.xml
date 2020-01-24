@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\dfitz\.Rider2019.3\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\dfitz\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\dfitz\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Aelgi.Engine.-226829394.00" t="ExcludeRecursive" />
+    <e p="C:\Users\dfitz\Documents\git\aelgi\Aelgi.Engine" t="IncludeFlat">
+      <e p="Aelgi.Engine.Client" t="IncludeRecursive">
+        <e p="Aelgi.Engine.Client.fsproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Connector.fs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="Aelgi.Engine.Client.HelloWorld" t="IncludeRecursive">
+        <e p="Aelgi.Engine.Client.HelloWorld.fsproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.fs" t="Include" />
+      </e>
+      <e p="Aelgi.Engine.Core" t="IncludeRecursive">
+        <e p="Aelgi.Engine.Core.fsproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Library.fs" t="Include" />
+        <e p="Message" t="Include">
+          <e p="Core.fs" t="Include" />
+        </e>
+        <e p="Network" t="Include">
+          <e p="Converter.fs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+      </e>
+      <e p="Aelgi.Engine.Server" t="IncludeRecursive">
+        <e p="Aelgi.Engine.Server.fsproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Handler" t="Include">
+          <e p="Server.fs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.fs" t="Include" />
+      </e>
+      <e p="Aelgi.Engine.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
