@@ -21,6 +21,7 @@
         <e p="Aelgi.Engine.Core.fsproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="IServices" t="Include">
+          <e p="Connection.fs" t="Include" />
           <e p="Database.fs" t="Include" />
           <e p="Delegators.fs" t="Include" />
         </e>

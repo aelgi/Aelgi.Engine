@@ -11,6 +11,7 @@
         <Compile Include="Library.fs" />
         <Compile Include="IServices\Database.fs" />
         <Compile Include="IServices\Delegators.fs" />
+        <Compile Include="IServices\Connection.fs" />
         <Compile Include="Records\Database.fs" />
     </ItemGroup>
 

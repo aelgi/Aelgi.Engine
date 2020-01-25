@@ -1,33 +1,40 @@
 ﻿module Aelgi.Engine.Client
 
+open System.Net
+open Aelgi.Engine.Core.IServices.Connection
 open System.Net.Sockets
 open Aelgi.Engine.Core.Message
 open Aelgi.Engine.Core.Network
 
-type Connection =
-    {
-        Host: string
-        Port: int
-    }
+type ConnectionAdapter (host: string, port: int) =
+//    let hostInfo = Dns.GetHostEntry host
+//    let hostAddress = hostInfo.AddressList |> Array.head
+//    let endpoint =
+//        if host = "localhost" then IPEndPoint(IPAddress.Loopback, port)
+//        else new IPEndPoint(hostAddress, port)
     
+    interface IConnectionAdapter with
+        member this.OpenStream () =
+            let client = new TcpClient(host, port)
+            client.NoDelay <- false
+            client.GetStream()
+            
+        member this.Close () =
+            ()
+//            client.Close()
+
 let connect (host: string) (port: int) =
-    { Host = host; Port = port; }
+    ConnectionAdapter (host, port)
+    :> IConnectionAdapter
     
-let private openStream (connection: Connection) =
-    let client = new TcpClient(connection.Host, connection.Port)
-    client.NoDelay <- true
-    
-    client
-    
-let sendMessageWithResponse (message: ClientMessage) (connection: Connection) =
-    use client = openStream connection
-    use stream = client.GetStream()
+let sendMessageWithResponse (connection: IConnectionAdapter) (message: ClientMessage) =
+    use stream = connection.OpenStream()
     
     Encoder.encodeClient message
     |> (fun x -> stream.Write(x, 0, x.Length))
     
     Encoder.decodeServer stream
     
-let sendMessage (message: ClientMessage) (connection: Connection) =
-    sendMessageWithResponse message connection |> ignore
+let sendMessage (connection: IConnectionAdapter) (message: ClientMessage) =
+    sendMessageWithResponse connection message |> ignore
     connection

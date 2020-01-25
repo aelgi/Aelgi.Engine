@@ -18,10 +18,12 @@ let encodeServer (message: ServerMessage) =
     |> Converter.messageToByteArray
     
 let decodeServer (incoming: Stream) =
-    incoming
-    |> Converter.streamToMessage
-    |> Async.RunSynchronously
-    |> Json.deserialize<ServerMessage>
+    let message =
+        incoming
+        |> Converter.streamToMessage
+        |> Async.RunSynchronously
+    
+    message |> Json.deserialize<ServerMessage>
     
 let decodeClient (incoming: Stream) =
     let message =
