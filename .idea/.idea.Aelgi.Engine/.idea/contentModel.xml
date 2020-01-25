@@ -32,7 +32,12 @@
       </e>
       <e p="Aelgi.Engine.Server" t="IncludeRecursive">
         <e p="Aelgi.Engine.Server.fsproj" t="IncludeRecursive" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="AppSettings.fs" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="appsettings.Production.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Dockerfile" t="Include" />
         <e p="Handler" t="Include">
           <e p="Delegator.fs" t="Include" />
           <e p="Server.fs" t="Include" />
