@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Connector.fs" />
+        <Compile Include="Client.fs" />
     </ItemGroup>
 
     <ItemGroup>

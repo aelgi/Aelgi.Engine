@@ -1,6 +1,6 @@
 ﻿module Aelgi.Engine.Server.Handler.Server
 
-open Aelgi.Engine.Core
+open Aelgi.Engine.Core.Network
 open System.Net
 open System.Net.Sockets
 open System.Threading
@@ -8,10 +8,18 @@ open System.Threading
 exception UnableToQueueException
 
 let private handleIncomingRequest (client: TcpClient) (a: obj) =
+    use stream = client.GetStream()
+    
     let request =
-        client.GetStream()
-        |> Network.Converter.streamToMessage
-        |> Async.RunSynchronously
+        stream
+        |> Encoder.decodeClient
+        
+    let result =
+        request
+        |> Delegator.processMessage
+        |> Encoder.encodeServer
+        
+    stream.Write(result, 0, result.Length)
         
     client.Close()        
 

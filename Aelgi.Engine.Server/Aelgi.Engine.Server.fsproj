@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Handler\Delegator.fs" />
         <Compile Include="Handler\Server.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>

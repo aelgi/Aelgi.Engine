@@ -5,9 +5,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Network\Converter.fs" />
-        <Compile Include="Library.fs" />
         <Compile Include="Message\Core.fs" />
+        <Compile Include="Network\Converter.fs" />
+        <Compile Include="Network\Encoder.fs" />
+        <Compile Include="Library.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FSharp.Json" Version="0.4.0" />
     </ItemGroup>
 
 </Project>

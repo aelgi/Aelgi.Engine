@@ -1,7 +1,12 @@
 ﻿namespace Aelgi.Engine.Core.Message
 
+open System
+
 type ServerMessage =
-    | Ping
+    | Ok of unit
+    | Pong of string
+    | Time of double
     
 type ClientMessage =
-    | Pong
+    | Ping of string
+    | Time of DateTime

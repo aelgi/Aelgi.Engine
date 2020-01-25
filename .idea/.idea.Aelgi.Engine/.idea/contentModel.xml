@@ -8,7 +8,7 @@
       <e p="Aelgi.Engine.Client" t="IncludeRecursive">
         <e p="Aelgi.Engine.Client.fsproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Connector.fs" t="Include" />
+        <e p="Client.fs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
       </e>
       <e p="Aelgi.Engine.Client.HelloWorld" t="IncludeRecursive">
@@ -26,6 +26,7 @@
         </e>
         <e p="Network" t="Include">
           <e p="Converter.fs" t="Include" />
+          <e p="Encoder.fs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
       </e>
@@ -33,6 +34,7 @@
         <e p="Aelgi.Engine.Server.fsproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Handler" t="Include">
+          <e p="Delegator.fs" t="Include" />
           <e p="Server.fs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
