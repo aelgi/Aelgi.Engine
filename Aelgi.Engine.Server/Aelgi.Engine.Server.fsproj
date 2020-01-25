@@ -8,6 +8,8 @@
     <ItemGroup>
         <Compile Include="Handler\Delegator.fs" />
         <Compile Include="Handler\Server.fs" />
+        <Compile Include="Handler\Delegators\TimeDelegator.fs" />
+        <Compile Include="Handler\Delegators\PingDelegator.fs" />
         <Compile Include="AppSettings.fs" />
         <Compile Include="Program.fs" />
         <Content Include="Dockerfile" />
@@ -24,6 +26,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Aelgi.Engine.Core\Aelgi.Engine.Core.fsproj" />
+      <ProjectReference Include="..\Aelgi.Engine.DataAccess.Neo4j\Aelgi.Engine.DataAccess.Neo4j.fsproj" />
     </ItemGroup>
 
     <ItemGroup>

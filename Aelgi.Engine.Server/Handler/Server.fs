@@ -7,7 +7,7 @@ open System.Threading
 
 exception UnableToQueueException
 
-let private handleIncomingRequest (client: TcpClient) (a: obj) =
+let private handleIncomingRequest (delegator: Delegator.Delegator) (client: TcpClient) (_: obj) =
     use stream = client.GetStream()
     
     let request =
@@ -16,23 +16,25 @@ let private handleIncomingRequest (client: TcpClient) (a: obj) =
         
     let result =
         request
-        |> Delegator.processMessage
+        |> delegator
         |> Encoder.encodeServer
         
     stream.Write(result, 0, result.Length)
         
     client.Close()        
 
-let listen (port: int) =
+let listen (delegationHandler: Delegator.Delegator) (port: int) =
     let ipAddress = IPAddress.Any
     let server = new TcpListener(ipAddress, port)
     server.Start()
+    
+    let requestHandler = handleIncomingRequest delegationHandler
     
     while true do
         let client = server.AcceptTcpClient()
         
         client
-        |> handleIncomingRequest
+        |> requestHandler
         |> ThreadPool.QueueUserWorkItem
         |> function
             | false -> raise UnableToQueueException

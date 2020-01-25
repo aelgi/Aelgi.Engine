@@ -20,6 +20,10 @@
       <e p="Aelgi.Engine.Core" t="IncludeRecursive">
         <e p="Aelgi.Engine.Core.fsproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="IServices" t="Include">
+          <e p="Database.fs" t="Include" />
+          <e p="Delegators.fs" t="Include" />
+        </e>
         <e p="Library.fs" t="Include" />
         <e p="Message" t="Include">
           <e p="Core.fs" t="Include" />
@@ -29,6 +33,18 @@
           <e p="Encoder.fs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
+        <e p="Records" t="Include">
+          <e p="Database.fs" t="Include" />
+        </e>
+      </e>
+      <e p="Aelgi.Engine.DataAccess.Neo4j" t="IncludeRecursive">
+        <e p="Aelgi.Engine.DataAccess.Neo4j.fsproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Library.fs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Services" t="Include">
+          <e p="DBConnector.fs" t="Include" />
+        </e>
       </e>
       <e p="Aelgi.Engine.Server" t="IncludeRecursive">
         <e p="Aelgi.Engine.Server.fsproj" t="IncludeRecursive" />
@@ -40,6 +56,10 @@
         <e p="Dockerfile" t="Include" />
         <e p="Handler" t="Include">
           <e p="Delegator.fs" t="Include" />
+          <e p="Delegators" t="Include">
+            <e p="PingDelegator.fs" t="Include" />
+            <e p="TimeDelegator.fs" t="Include" />
+          </e>
           <e p="Server.fs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />

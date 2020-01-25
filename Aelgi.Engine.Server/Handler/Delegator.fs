@@ -2,8 +2,17 @@
 
 open System
 open Aelgi.Engine.Core.Message
+open Aelgi.Engine.Core.IServices.Delegators
 
-let processMessage (message: ClientMessage) =
+type Delegator = ClientMessage -> ServerMessage
+
+type Handlers =
+    {
+        pingDelegator: PingDelegator
+        timeDelegator: TimeDelegator
+    }
+
+let processMessage (handlers: Handlers) (message: ClientMessage) =
     match message with
-    | Ping s -> ServerMessage.Pong s
-    | Time t -> (DateTime.UtcNow.Subtract t).TotalMilliseconds |> ServerMessage.Time
+    | Ping s -> handlers.pingDelegator s
+    | Time t -> handlers.timeDelegator t

@@ -8,6 +8,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Aelgi.Engine.Core", "Aelgi.
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Aelgi.Engine.Client", "Aelgi.Engine.Client\Aelgi.Engine.Client.fsproj", "{9DDC3A99-3AB9-47DC-94C7-91E1D8BF8D39}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Aelgi.Engine.DataAccess.Neo4j", "Aelgi.Engine.DataAccess.Neo4j\Aelgi.Engine.DataAccess.Neo4j.fsproj", "{F2E5B9D9-F34E-4649-8232-FC42444E6A75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{9DDC3A99-3AB9-47DC-94C7-91E1D8BF8D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DDC3A99-3AB9-47DC-94C7-91E1D8BF8D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DDC3A99-3AB9-47DC-94C7-91E1D8BF8D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2E5B9D9-F34E-4649-8232-FC42444E6A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2E5B9D9-F34E-4649-8232-FC42444E6A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2E5B9D9-F34E-4649-8232-FC42444E6A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2E5B9D9-F34E-4649-8232-FC42444E6A75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

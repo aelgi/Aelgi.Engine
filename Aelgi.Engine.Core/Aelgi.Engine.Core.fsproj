@@ -9,6 +9,9 @@
         <Compile Include="Network\Converter.fs" />
         <Compile Include="Network\Encoder.fs" />
         <Compile Include="Library.fs" />
+        <Compile Include="IServices\Database.fs" />
+        <Compile Include="IServices\Delegators.fs" />
+        <Compile Include="Records\Database.fs" />
     </ItemGroup>
 
     <ItemGroup>

@@ -3,6 +3,9 @@
 open Aelgi.Engine.Server
 open System
 open Aelgi.Engine.Server.Handler
+open Aelgi.Engine.DataAccess.Neo4j.Services
+open Aelgi.Engine.Server.Handler
+open Aelgi.Engine.Server.Handler
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
@@ -30,13 +33,22 @@ let configureServices (context: HostBuilderContext) (services: IServiceCollectio
 [<EntryPoint>]
 let main argv =
     let builder =
-        HostBuilder()
-            .ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureAppConfiguration)
+        Host.CreateDefaultBuilder()
+//            .ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureAppConfiguration)
             .ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices)
             .Build()
 
-    let appSettings = builder.Services.GetService<AppSettings>()         
+    let appSettings = builder.Services.GetService<AppSettings>()
+    
+    let dbAdapter = DBConnector.connect appSettings.Neo4j.URI appSettings.Neo4j.Username appSettings.Neo4j.Password
+    DBConnector.testConnection dbAdapter () |> Async.RunSynchronously
+    
+    let handlers = {
+        Delegator.pingDelegator = PingDelegator.handler
+        Delegator.timeDelegator = TimeDelegator.handler
+    }
+    let delegator = Delegator.processMessage handlers
 
-    Server.listen 7707
+    Server.listen delegator 7707
 
     0 // return an integer exit code

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Library.fs" />
+        <Compile Include="Services\DBConnector.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Neo4j.Driver" Version="4.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Aelgi.Engine.Core\Aelgi.Engine.Core.fsproj" />
+    </ItemGroup>
+
+</Project>
