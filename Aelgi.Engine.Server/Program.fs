@@ -33,7 +33,7 @@ let configureServices (context: HostBuilderContext) (services: IServiceCollectio
 [<EntryPoint>]
 let main argv =
     let builder =
-        Host.CreateDefaultBuilder()
+        Host.CreateDefaultBuilder(argv)
 //            .ConfigureAppConfiguration(Action<HostBuilderContext, IConfigurationBuilder> configureAppConfiguration)
             .ConfigureServices(Action<HostBuilderContext, IServiceCollection> configureServices)
             .Build()
