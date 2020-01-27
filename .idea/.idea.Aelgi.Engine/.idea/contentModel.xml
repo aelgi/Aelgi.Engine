@@ -10,6 +10,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Client.fs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="User.fs" t="Include" />
       </e>
       <e p="Aelgi.Engine.Client.HelloWorld" t="IncludeRecursive">
         <e p="Aelgi.Engine.Client.HelloWorld.fsproj" t="IncludeRecursive" />
@@ -28,23 +29,31 @@
         <e p="Library.fs" t="Include" />
         <e p="Message" t="Include">
           <e p="Core.fs" t="Include" />
+          <e p="UserMessage.fs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="UserModel.fs" t="Include" />
         </e>
         <e p="Network" t="Include">
           <e p="Converter.fs" t="Include" />
           <e p="Encoder.fs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
-        <e p="Records" t="Include">
-          <e p="Database.fs" t="Include" />
+        <e p="Security" t="Include">
+          <e p="Hasher.fs" t="Include" />
         </e>
       </e>
       <e p="Aelgi.Engine.DataAccess.Neo4j" t="IncludeRecursive">
         <e p="Aelgi.Engine.DataAccess.Neo4j.fsproj" t="IncludeRecursive" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Entities" t="Include">
+          <e p="UserEntity.fs" t="Include" />
+        </e>
         <e p="Library.fs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Services" t="Include">
           <e p="DBConnector.fs" t="Include" />
+          <e p="UserService.fs" t="Include" />
         </e>
       </e>
       <e p="Aelgi.Engine.Server" t="IncludeRecursive">
@@ -60,6 +69,7 @@
           <e p="Delegators" t="Include">
             <e p="PingDelegator.fs" t="Include" />
             <e p="TimeDelegator.fs" t="Include" />
+            <e p="UserDelegator.fs" t="Include" />
           </e>
           <e p="Server.fs" t="Include" />
         </e>

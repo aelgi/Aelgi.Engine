@@ -10,6 +10,7 @@
         <Compile Include="Handler\Server.fs" />
         <Compile Include="Handler\Delegators\TimeDelegator.fs" />
         <Compile Include="Handler\Delegators\PingDelegator.fs" />
+        <Compile Include="Handler\Delegators\UserDelegator.fs" />
         <Compile Include="AppSettings.fs" />
         <Compile Include="Program.fs" />
         <Content Include="Dockerfile" />

@@ -4,7 +4,7 @@ type QueryRunner = string -> unit
 
 type IDatabaseResult =
     abstract Keys : string list with get
-    abstract member RenderColumn<'T> : string -> 'T list 
+    abstract member FetchColumn: string -> Map<string, obj> list
     
 type IDatabaseAdapter =
     abstract member ExecuteQueryWithResult : string -> obj -> Async<IDatabaseResult>

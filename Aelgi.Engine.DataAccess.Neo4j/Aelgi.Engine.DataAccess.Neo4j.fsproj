@@ -5,8 +5,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Entities\UserEntity.fs" />
         <Compile Include="Library.fs" />
         <Compile Include="Services\DBConnector.fs" />
+        <Compile Include="Services\UserService.fs" />
     </ItemGroup>
 
     <ItemGroup>

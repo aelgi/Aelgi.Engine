@@ -1,6 +1,5 @@
-﻿module Aelgi.Engine.Client
+﻿namespace Aelgi.Engine.Client
 
-open System.Net
 open Aelgi.Engine.Core.IServices.Connection
 open System.Net.Sockets
 open Aelgi.Engine.Core.Message
@@ -23,18 +22,22 @@ type ConnectionAdapter (host: string, port: int) =
             ()
 //            client.Close()
 
-let connect (host: string) (port: int) =
-    ConnectionAdapter (host, port)
-    :> IConnectionAdapter
-    
-let sendMessageWithResponse (connection: IConnectionAdapter) (message: ClientMessage) =
-    use stream = connection.OpenStream()
-    
-    Encoder.encodeClient message
-    |> (fun x -> stream.Write(x, 0, x.Length))
-    
-    Encoder.decodeServer stream
-    
-let sendMessage (connection: IConnectionAdapter) (message: ClientMessage) =
-    sendMessageWithResponse connection message |> ignore
-    connection
+type SendMessageWithResponse = ClientMessage -> ServerMessage
+type SendMessage = ClientMessage -> unit
+
+[<AutoOpen>]
+module Connector =
+    let connect (host: string) (port: int) =
+        ConnectionAdapter (host, port)
+        :> IConnectionAdapter
+        
+    let sendMessageWithResponse (connection: IConnectionAdapter) (message: ClientMessage) =
+        use stream = connection.OpenStream()
+        
+        Encoder.encodeClient message
+        |> (fun x -> stream.Write(x, 0, x.Length))
+        
+        Encoder.decodeServer stream
+        
+    let sendMessage (connection: IConnectionAdapter) (message: ClientMessage) =
+        sendMessageWithResponse connection message |> ignore

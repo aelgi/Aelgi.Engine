@@ -3,6 +3,8 @@
 open Aelgi.Engine.Core.Message
 open System
 
-let handler (d: DateTime) =
-    DateTime.UtcNow.Subtract(d).TotalMilliseconds
+type DateTimeLookup = unit -> DateTime
+
+let handler (d: DateTimeLookup) (receivedDateTime: DateTime) =
+    d().Subtract(receivedDateTime).TotalMilliseconds
     |> ServerMessage.Time

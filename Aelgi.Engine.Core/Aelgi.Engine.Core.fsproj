@@ -5,6 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Models\UserModel.fs" />
+        <Compile Include="Message\UserMessage.fs" />
         <Compile Include="Message\Core.fs" />
         <Compile Include="Network\Converter.fs" />
         <Compile Include="Network\Encoder.fs" />
@@ -12,7 +14,7 @@
         <Compile Include="IServices\Database.fs" />
         <Compile Include="IServices\Delegators.fs" />
         <Compile Include="IServices\Connection.fs" />
-        <Compile Include="Records\Database.fs" />
+        <Compile Include="Security\Hasher.fs" />
     </ItemGroup>
 
     <ItemGroup>

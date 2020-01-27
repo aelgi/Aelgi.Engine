@@ -3,9 +3,11 @@
 open Aelgi.Engine.Server
 open System
 open Aelgi.Engine.Server.Handler
+open Aelgi.Engine.DataAccess.Neo4j
 open Aelgi.Engine.DataAccess.Neo4j.Services
-open Aelgi.Engine.Server.Handler
-open Aelgi.Engine.Server.Handler
+open Aelgi.Engine.DataAccess.Neo4j.Services
+open Aelgi.Engine.DataAccess.Neo4j.Services
+open Aelgi.Engine.Server.Handler.Delegators
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
@@ -43,9 +45,15 @@ let main argv =
     let dbAdapter = DBConnector.connect appSettings.Neo4j.URI appSettings.Neo4j.Username appSettings.Neo4j.Password
     DBConnector.testConnection dbAdapter () |> Async.RunSynchronously
     
+    let createUser = UserService.createUser dbAdapter
+    let fetchUsers = UserService.fetchUsers dbAdapter
+    
+    let users = fetchUsers() |> Async.RunSynchronously
+    
     let handlers = {
         Delegator.pingDelegator = PingDelegator.handler
-        Delegator.timeDelegator = TimeDelegator.handler
+        Delegator.timeDelegator = TimeDelegator.handler (fun _ -> DateTime.UtcNow)
+        Delegator.userCreateDelegator = UserDelegator.createHandler createUser
     }
     let delegator = Delegator.processMessage handlers
 
