@@ -26,10 +26,9 @@ module UserService =
                 |> adapter.ExecuteQueryWithResult "CREATE (u:User) SET u = $Entity RETURN u"
                 
             let user =
-                result.FetchColumn "u"
-                |> List.head
-                |> UserEntity.convertFromDictionary
-                |> UserEntity.convertToModel
+                match result with
+                | Some u -> u.FetchColumn "u" |> List.head |> UserEntity.convertFromDictionary |> UserEntity.convertToModel |> Some
+                | None -> None
                 
             return user
         }
@@ -40,8 +39,9 @@ module UserService =
                 adapter.ExecuteQueryWithResult "MATCH (u:User) RETURN u" null
                 
             let values =
-                result.FetchColumn "u"
-                |> List.map UserEntity.convertFromDictionary
-                |> List.map UserEntity.convertToModel
+                result
+                |> Option.map (fun x -> x.FetchColumn "u")
+                |> Option.map (List.map UserEntity.convertFromDictionary)
+                |> Option.map (List.map UserEntity.convertToModel)
             return values
         }

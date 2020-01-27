@@ -36,22 +36,29 @@ type DatabaseAdapter (uri: string, username: string, password: string) =
         member this.ExecuteQueryWithResult (query: string) (parameters: obj) =
             let sesh = driver.AsyncSession()
             async {
-                let! tempRes = sesh.RunAsync(query, parameters) |> Async.AwaitTask
-                let! records = tempRes.ToListAsync() |> Async.AwaitTask
-                
-                let! keys = tempRes.KeysAsync() |> Async.AwaitTask
-                
-                do! sesh.CloseAsync() |> Async.AwaitTask
-                
-                return DatabaseResult (keys |> Array.toList, records |> Seq.rev |> Seq.toList) :> IDatabaseResult
+                try
+                    let! tempRes = sesh.RunAsync(query, parameters) |> Async.AwaitTask
+                    let! records = tempRes.ToListAsync() |> Async.AwaitTask
+                    
+                    let! keys = tempRes.KeysAsync() |> Async.AwaitTask
+                    
+                    do! sesh.CloseAsync() |> Async.AwaitTask
+                    
+                    return DatabaseResult (keys |> Array.toList, records |> Seq.rev |> Seq.toList) :> IDatabaseResult |> Some
+                with
+                    | _ -> return None
             }
             
         member this.ExecuteQuery (query: string) (parameters: obj) =
             let sesh = driver.AsyncSession()
             async {
-                let! tempRes = sesh.RunAsync(query, parameters) |> Async.AwaitTask
-                
-                do! sesh.CloseAsync() |> Async.AwaitTask
+                try
+                    let! tempRes = sesh.RunAsync(query, parameters) |> Async.AwaitTask
+                    
+                    do! sesh.CloseAsync() |> Async.AwaitTask
+                    return Some ()
+                with
+                    | _ -> return None
             }
 
 [<AutoOpen>]

@@ -43,8 +43,12 @@ let main argv =
     let appSettings = builder.Services.GetService<AppSettings>()
     
     let dbAdapter = DBConnector.connect appSettings.Neo4j.URI appSettings.Neo4j.Username appSettings.Neo4j.Password
-    DBConnector.testConnection dbAdapter () |> Async.RunSynchronously
     
+    let connected =
+        DBConnector.testConnection dbAdapter ()
+        |> Async.RunSynchronously
+        |> Option.isSome
+        
     let createUser = UserService.createUser dbAdapter
     let fetchUsers = UserService.fetchUsers dbAdapter
     

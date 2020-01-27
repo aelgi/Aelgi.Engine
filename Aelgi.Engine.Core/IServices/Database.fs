@@ -7,5 +7,5 @@ type IDatabaseResult =
     abstract member FetchColumn: string -> Map<string, obj> list
     
 type IDatabaseAdapter =
-    abstract member ExecuteQueryWithResult : string -> obj -> Async<IDatabaseResult>
-    abstract member ExecuteQuery : string -> obj -> Async<unit>
+    abstract member ExecuteQueryWithResult : string -> obj -> Async<IDatabaseResult option>
+    abstract member ExecuteQuery : string -> obj -> Async<unit option>

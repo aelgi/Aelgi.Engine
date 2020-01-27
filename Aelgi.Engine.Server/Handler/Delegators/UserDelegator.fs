@@ -3,12 +3,12 @@
 open Aelgi.Engine.Core.Models
 open Aelgi.Engine.Core.Message
 
-let createHandler (creator: (UserModel -> Async<UserModel>)) (user: UserModel) =
+let createHandler (creator: (UserModel -> Async<UserModel option>)) (user: UserModel) =
     let result =
         user
         |> creator
         |> Async.RunSynchronously
         
-    "created"
-    |> Success
-    |> Ok
+    match result with
+    | Some _ -> "created" |> Success |> Ok
+    | None -> Failure |> Ok
